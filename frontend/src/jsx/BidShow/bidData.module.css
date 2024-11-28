@@ -1,0 +1,107 @@
+.container1 {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  text-align: right;
+}
+
+h2,
+.h1{
+  text-align: center;
+   color: #333;
+}
+
+h3 {
+  color: #333;
+  text-align: right;
+  /* Align text to the right */
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  direction: rtl;
+  /* Right-to-left text direction */
+}
+
+.button {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ddd;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: right;
+  /* Align text to the right */
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tfoot {
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+
+.iconAction {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.inputField  {
+      width: "100%";
+      padding: "10px";
+      margin-bottom:"10px" ;
+      border: "1px solid #ccc";
+      border-radius:"4px" ;
+      box-sizing:"border-box" ;
+      font-size:"16px" ;
+      color: "#333";
+      background-color:"#fff" ;
+      outline: "none";
+    }
+/* Add your styles for the summary section */
+.summaryContainer {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.summaryItem {
+  margin-bottom: 10px;
+}

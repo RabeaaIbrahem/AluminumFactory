@@ -1,0 +1,167 @@
+/* Base container for the sketching interface */
+.sketch-container {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Arrange items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  margin: 0 auto; /* Center the container horizontally */
+  padding: 20px; /* Add padding inside the container */
+  max-width: 800px; /* Limit the maximum width of the container */
+  width: 100%; /* Make the container responsive */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  background: linear-gradient(to bottom, #cee9fa, #4682b4); /* Blue gradient background */
+  border-radius: 10px; /* Round the corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+  
+  /* Move the container to the left */
+  margin-left: 190px; /* Adjust this value to move the form as needed */
+}
+
+/* Canvas styling for the sketch area */
+.sketch-canvas {
+  border: 2px solid #000; /* Add a solid border */
+  margin-top: 20px; /* Space above the canvas */
+  width: 100%; /* Make the canvas responsive */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 600px; /* Limit the maximum width */
+  background-color: #f0f0f0; /* Light gray background */
+  border-radius: 8px; /* Round the corners */
+}
+
+/* Button styling for the "Create Sketch" button */
+.create-sketch-button {
+  margin-top: 20px; /* Space above the button */
+  padding: 12px 25px; /* Padding inside the button */
+  background-color: #007bff; /* Blue background color */
+  color: white; /* White text color */
+  font-size: 18px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Round the corners */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+  max-width: 300px; /* Limit the maximum width */
+  width: 100%; /* Make the button responsive */
+}
+
+.create-sketch-button:disabled {
+  background-color: #aaa; /* Gray background for disabled state */
+  cursor: not-allowed; /* Indicate that the button is not clickable */
+}
+
+.create-sketch-button:hover:not(:disabled) {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Styling for input groups */
+.input-group {
+  margin-bottom: 15px; /* Space below each input group */
+  width: 100%; /* Make the input group responsive */
+  max-width: 400px; /* Limit the maximum width */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Arrange items vertically */
+}
+
+.input-group label {
+  font-size: 18px; /* Font size for labels */
+  color: black; /* Text color */
+  margin-bottom: 5px; /* Space below the label */
+}
+
+.sketch-actions {
+  display: flex; /* Use flexbox for layout */
+  justify-content: space-around; /* Space out the buttons */
+  margin-bottom: 20px; /* Space below the action buttons */
+  width: 100%; /* Make the action buttons responsive */
+  max-width: 600px; /* Limit the maximum width */
+}
+
+.sketch-action-button {
+  padding: 10px 20px; /* Padding inside the button */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Pointer cursor on hover */
+  background-color: #22ad40; /* Green background color */
+  color: white; /* White text color */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Round the corners */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.sketch-action-button:hover {
+  background-color: #427104; /* Darker green on hover */
+}
+
+/* Styling for input fields and select dropdowns */
+.input-group input,
+.input-group select {
+  font-size: 16px; /* Font size */
+  padding: 10px; /* Padding inside the input fields */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 4px; /* Round the corners */
+  width: 100%; /* Make the input fields responsive */
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
+  background-color: white; /* White background color */
+}
+
+/* Styling for color input fields */
+.input-group input[type="color"] {
+  width: 100%; /* Make the color input responsive */
+  height: 50px; /* Increase height for better visibility */
+  border: none; /* Remove default border */
+  padding: 0; /* Remove padding */
+  margin-top: 5px; /* Space above the color input */
+  cursor: pointer; /* Pointer cursor on hover */
+  -webkit-appearance: none; /* Remove default appearance in WebKit browsers */
+  appearance: none; /* Remove default appearance */
+  border-radius: 4px; /* Round the corners */
+  overflow: hidden; /* Hide overflow */
+}
+
+.input-group input[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0; /* Remove padding */
+  border-radius: 4px; /* Round the corners */
+}
+
+.input-group input[type="color"]::-webkit-color-swatch,
+.input-group input[type="color"]::-moz-color-swatch {
+  border: 1px solid #000; /* Black border */
+  border-radius: 4px; /* Round the corners */
+  background-color: initial; /* Initial background color */
+}
+.sketch-display-container {
+  display: flex;
+  justify-content: center; /* Center the canvas horizontally */
+  align-items: center;     /* Center the canvas vertically */
+  width: 100%;             /* Ensure it takes the full width of the table cell */
+  height: 100%;            /* Ensure it takes the full height of the table cell */
+  padding: 0;             /* Remove any padding */
+  margin: 0;              /* Remove any margin */
+}
+
+canvas {
+  border: none;           /* Remove border */
+  display: block;         /* Remove extra space below the canvas */
+  max-width: 100%;        /* Ensure it doesn't exceed container width */
+  max-height: 100%;       /* Ensure it doesn't exceed container height */
+}
+
+/* Styling for error messages */
+.error-message {
+  color: red; /* Red text color */
+  font-size: 14px; /* Font size */
+  margin-top: 5px; /* Space above the error message */
+}
+
+/* Responsive Design */
+/* Adjustments for tablets */
+@media (max-width: 768px) {
+  .sketch-container {
+    margin-left: 30px; /* Smaller adjustment for tablet screens */
+  }
+}
+
+/* Adjustments for mobile screens */
+@media (max-width: 480px) {
+  .sketch-container {
+    margin-left: 20px; /* Even smaller adjustment for mobile screens */
+  }
+}

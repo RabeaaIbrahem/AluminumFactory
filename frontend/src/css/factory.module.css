@@ -1,0 +1,77 @@
+/* Styles for the wrapper element, aligning items in the center and adding right padding */
+.wrapper {
+  justify-content: center; /* Center-align items horizontally */
+  align-items: center; /* Center-align items vertically */
+  padding-right: 15%; /* Add right padding of 15% */
+}
+
+/* Styles for the container element */
+.container {
+  border: 1px solid #e0e0e0; /* Light gray border */
+  border-radius: 8px; /* Rounded corners with 8px radius */
+  padding: 20px; /* Add padding of 20px inside the container */
+  max-width: 400px; /* Maximum width of the container */
+  margin: 20px auto; /* Center the container horizontally with 20px margin on top and bottom */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  background-color: #fff; /* White background color */
+}
+
+/* Styles for the heading level 2 (h2) inside the container */
+.container h2 {
+  margin-top: 0; /* Remove the top margin */
+  font-size: 24px; /* Font size of 24px */
+  color: #333; /* Dark gray color */
+  text-align: center; /* Center-align the text */
+}
+
+/* Styles for paragraph text (p) inside the container */
+.container p {
+  font-size: 14px; /* Font size of 14px */
+  color: #666; /* Medium gray color */
+  margin: 10px 0; /* Margin of 10px on top and bottom */
+  text-align: right; /* Right-align the text */
+}
+
+/* Styles for items within the container */
+.item {
+  display: flex; /* Use flexbox layout */
+  align-items: center; /* Center-align items vertically */
+  margin: 10px 0; /* Margin of 10px on top and bottom */
+  border-top: 1px solid #e0e0e0; /* Light gray top border */
+  padding-top: 10px; /* Padding of 10px on top */
+  justify-content: flex-end; /* Align items to the end (right) horizontally */
+}
+
+/* Remove the top border and padding for the first item */
+.item:first-of-its-kind {
+  border-top: none; /* Remove the top border */
+  padding-top: 0; /* Remove the top padding */
+}
+
+/* Styles for icons within the item */
+.icon {
+  width: 24px; /* Set width to 24px */
+  height: 24px; /* Set height to 24px */
+  margin-left: 10px; /* Add left margin of 10px */
+  margin-right: 0; /* Remove right margin */
+}
+
+/* Styles for details section inside the item */
+.details {
+  display: flex; /* Use flexbox layout */
+  flex-direction: column; /* Arrange items in a column */
+  align-items: flex-end; /* Align items to the end (right) horizontally */
+}
+
+/* Styles for links inside the details section */
+.details a {
+  color: #000; /* Black text color */
+  text-decoration: none; /* Remove underline from links */
+  font-weight: bold; /* Make font bold */
+}
+
+/* Styles for span elements inside the details section */
+.details span {
+  font-size: 12px; /* Font size of 12px */
+  color: #666; /* Medium gray color */
+}

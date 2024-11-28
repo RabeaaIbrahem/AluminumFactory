@@ -1,0 +1,41 @@
+/* Normalize the CSS to ensure consistency across browsers */
+@import-normalize;
+
+/* Styles for heading level 2 (h2) */
+.h2 {
+  color: rgb(0, 0, 0); /* Text color: black */
+  background-color: transparent; /* Transparent background */
+  font-family: "Helvetica", Sans-serif; /* Font family: Helvetica with fallback to Sans-serif */
+  font-size: 2rem; /* Font size: 2 rem units */
+  font-weight: bolder; /* Font weight: bolder than normal */
+  text-align: center; /* Center-align the text */
+  font-weight: bold; /* Font weight: bold (overwrites previous bolder) */
+}
+
+/* Styles for the main container */
+.main {
+  text-align: center; /* Center-align text inside the container */
+  display: block; /* Display as block element */
+  width: 100vh; /* Width set to 100% of the viewport height (useful for full-screen containers) */
+  height: auto; /* Height adjusts automatically based on content */
+  border-radius: 20px; /* Rounded corners with 20px radius */
+  margin-right: auto; /* Center horizontally using automatic margins */
+  margin-top: 2rem; /* Top margin of 2 rem units */
+  margin-left: auto; /* Center horizontally using automatic margins */
+  margin-bottom: 2rem; /* Bottom margin of 2 rem units */
+  border: 10px solid #ecf0f1; /* Solid border with 10px width and light gray color */
+  background-color: #ecf0f1; /* Light gray background color */
+}
+
+/* Styles for paragraph text (p) */
+.p {
+  color: rgb(138, 104, 62); /* Text color: brownish */
+  text-align: center; /* Center-align the text */
+  font-weight: bold; /* Font weight: bold */
+  font-size: 1.5rem; /* Font size: 1.5 rem units */
+}
+
+/* Styles for heading level 1 (h1) */
+.h1 {
+  color: black; /* Text color: black */
+}

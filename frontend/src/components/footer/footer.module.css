@@ -1,0 +1,14 @@
+@import-normalize;
+.footer {
+  color: black;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif; /* Set the font family */
+  font-size: 1.6rem; /* Set the font size */
+  bottom: 0; /* Position the footer at the bottom of the page */
+  left: 0; /* Align the footer to the left */
+  width: 30%;
+  font-weight: bold; /* Make the font bold */
+  position: fixed;
+  text-align: left;
+  padding: 10px 20px; /* Add padding inside the footer */
+}

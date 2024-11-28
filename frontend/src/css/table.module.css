@@ -1,0 +1,148 @@
+/* Container for the layout, using flexbox to arrange child elements in a column */
+.container {
+  display: flex; /* Use flexbox layout */
+  flex-direction: column; /* Arrange child elements in a vertical column */
+  justify-content: space-between; /* Space out child elements evenly */
+}
+
+/* Style for table-like elements, adjusting margins */
+.tablef {
+  flex: 1; /* Allow the element to grow and fill available space */
+  margin-right: 25%; /* Right margin of 25% of the container's width */
+  margin-left: 5%; /* Left margin of 5% of the container's width */
+}
+
+/* Styling for icons */
+.icon {
+  width: 20px; /* Set the width of the icon */
+  height: 20px; /* Set the height of the icon */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  margin-right: 10px; /* Right margin of 10px */
+}
+
+/* Table styles */
+.table {
+  width: 100%; /* Full width of the parent container */
+}
+
+/* Styling for table headers and cells */
+.table th,
+.table td {
+  text-align: center; /* Center-align text */
+  vertical-align: middle; /* Center-align vertically */
+  padding: 10px; /* Padding of 10px inside table cells */
+}
+
+/* Specific styling for table headers */
+.table th {
+  background-color: #f8f9fa; /* Light gray background color for headers */
+}
+
+/* Specific styling for table cells */
+.table td {
+  background-color: #ffffff; /* White background color for cells */
+}
+
+/* Input fields inside the table, making them full-width */
+.table input {
+  width: 100%; /* Full width of the table cell */
+  text-align: center; /* Center-align text inside the input */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+/* Class for aligning text to the right */
+.rightAlign {
+  text-align: right; /* Right-align text */
+}
+
+/* Controls section with buttons and select elements */
+.controls {
+  display: flex; /* Use flexbox layout */
+  justify-content: space-between; /* Space out child elements evenly */
+  align-items: center; /* Align items vertically centered */
+  margin-bottom: 20px; /* Margin of 20px at the bottom */
+}
+
+/* Style for buttons inside the controls section */
+.controls > button {
+  padding: 5px 20px; /* Padding of 5px top/bottom and 20px left/right */
+  font-size: 18px; /* Font size of 18px */
+  background-color: white; /* Green background color */
+  border: 1px solid white ; /* Green border */
+  color: black; /* White text color */
+}
+
+/* Hover state for buttons */
+.controls > button:hover {
+  background-color: #218838; /* Darker green background on hover */
+  border-color: #1e7e34; /* Darker green border on hover */
+}
+
+/* Style for select elements inside the controls section */
+.controls > select {
+  width: 150px; /* Width of 150px */
+  padding: 5px; /* Padding of 5px */
+}
+
+/* Style for search bar inside the controls section */
+.controls > .search-bar {
+  width: 250px; /* Width of 250px */
+}
+
+/* Responsive Styles */
+
+/* For tablets and larger mobile devices */
+@media (max-width: 768px) {
+  .tablef {
+    margin-right: 10%; /* Reduced right margin */
+    margin-left: 5%; /* Keep left margin same */
+  }
+
+  .controls {
+    flex-direction: column; /* Stack controls vertically */
+    align-items: flex-start; /* Align controls to the start */
+  }
+
+  .controls > button {
+    width: 100%; /* Full width for buttons */
+    margin-bottom: 10px; /* Margin between buttons */
+  }
+
+  .controls > select,
+  .controls > .search-bar {
+    width: 100%; /* Full width for select and search bar */
+    margin-bottom: 10px; /* Margin between elements */
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 480px) {
+  .tablef {
+    margin-right: 5%; /* Further reduced right margin */
+    margin-left: 5%; /* Keep left margin same */
+  }
+
+  .icon {
+    width: 16px; /* Smaller icon size */
+    height: 16px; /* Smaller icon size */
+    margin-right: 5px; /* Reduced margin */
+  }
+
+  .table th,
+  .table td {
+    font-size: 14px; /* Smaller font size for table cells */
+  }
+
+  .controls {
+    margin-bottom: 10px; /* Reduced margin at the bottom */
+  }
+
+  .controls > button {
+    font-size: 16px; /* Smaller font size for buttons */
+  }
+
+  .controls > select,
+  .controls > .search-bar {
+    width: 100%; /* Full width for select and search bar */
+  }
+}

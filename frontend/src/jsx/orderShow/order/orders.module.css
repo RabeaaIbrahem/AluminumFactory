@@ -1,0 +1,100 @@
+.invoice {
+  font-family: Arial, sans-serif;
+  direction: rtl;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 800px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  transform: translateX(-10%);
+}
+.tableSection{
+    margin: 20px 0;
+}
+.tableCaption {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: right;
+  margin-bottom: 10px;
+  display: block;
+}
+.iconAction {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.icon {
+  width: 20px;
+  /* Set the width of the icon */
+  height: 20px;
+  /* Set the height of the icon */
+  cursor: pointer;
+  /* Change cursor to pointer on hover */
+  margin-right: 10px;
+  /* Right margin of 10px */
+}
+.header-details {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.info {
+  margin-bottom: 20px;
+}
+
+.info div {
+  margin-bottom: 10px;
+}
+
+.row{
+  display: flex;
+  justify-content: space-between;
+    align-items: center;
+      /* מיישר את האלמנטים במרכז */
+      gap: 15px;
+      /* מרווח בין כל אלמנט */
+}
+
+.row span {
+  margin-right: 20px;
+}
+
+.orderText {
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.headerButtons {
+      width: 100%;
+        justify-content: space-between;
+        margin-top: 10px;
+}
+.headerButtons button {
+  margin-right: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+thead th {
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 10px;
+}
+
+tbody td {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 10px;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}

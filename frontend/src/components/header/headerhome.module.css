@@ -1,0 +1,72 @@
+/* Header styling */
+.header {
+  width: 100%; /* Full width */
+  padding: 20px; /* Padding around content */
+  color: white; /* Text color */
+  display: flex; /* Flexbox layout */
+  justify-content: flex-end; /* Align items to the end of the container */
+  align-items: center; /* Center items vertically */
+}
+
+/* Styling for the main heading inside the header */
+.h1 {
+  margin: 0; /* Remove default margin */
+  color: black; /* Text color */
+  cursor: pointer; /* Pointer cursor on hover */
+  font-size: 1.5rem; /* Font size */
+  font-weight: bold; /* Bold text */
+}
+
+/* Header content container styling */
+.headerContent {
+  display: flex; /* Flexbox layout */
+  align-items: center; /* Center items vertically */
+  justify-content: flex-end; /* Align items to the end of the container */
+  width: 100%; /* Full width */
+}
+
+/* Container for the menu icon and dropdown */
+.menuContainer {
+  display: flex; /* Flexbox layout */
+  align-items: center; /* Center items vertically */
+  position: relative; /* Relative positioning for dropdown positioning */
+}
+
+/* Styling for the menu icon */
+.menuIcon {
+  width: 40px; /* Icon width */
+  height: 40px; /* Icon height */
+  cursor: pointer; /* Pointer cursor on hover */
+  margin-left: 10px; /* Space between icons */
+}
+
+/* Dropdown menu styling */
+.dropdownMenu {
+  position: absolute; /* Absolute positioning relative to menuContainer */
+  top: 40px; /* Position below the menu icon */
+  right: 0; /* Align to the right */
+  background-color: white; /* Background color */
+  border: 1px solid #e0e0e0; /* Border color and width */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Stack menu items vertically */
+  padding: 10px; /* Padding around menu items */
+}
+
+/* Styling for each menu item */
+.menuItem {
+  background-color: #024d68; /* Background color */
+  color: white; /* Text color */
+  border: none; /* Remove default border */
+  padding: 10px 20px; /* Padding inside the menu item */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  margin: 5px 0; /* Margin between menu items */
+  transition: background-color 0.3s; /* Smooth background color transition */
+}
+
+/* Hover effect for menu items */
+.menuItem:hover {
+  background-color: #016385; /* Change background color on hover */
+}

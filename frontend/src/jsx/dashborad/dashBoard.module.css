@@ -1,0 +1,93 @@
+.dashboardContainer {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 20px; /* Align to the left with spacing */
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboardTitle {
+  text-align: left; /* Align title to the left */
+  font-size: 28px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Align filters to the left */
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.filters label {
+  font-size: 16px;
+  color: black;
+  display: flex;
+  align-items: center;
+}
+
+.dateInput,
+.selectInput {
+  margin-left: 10px;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.dateInput:focus,
+.selectInput:focus {
+  border-color: #007bff;
+}
+
+.chartContainer {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left; /* Align content inside the chart container to the left */
+}
+
+.chartWrapper {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-top: 15px;
+}
+
+.bar {
+  max-height: 400px;
+}
+
+.h2 {
+  font-size: 1.8rem;
+  color: black;
+  margin-bottom: 15px;
+  text-align: center; /* Align heading to the left */
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filters label {
+    font-size: 14px;
+  }
+
+  .dateInput,
+  .selectInput {
+    font-size: 12px;
+  }
+
+  .h2 {
+    font-size: 18px;
+  }
+}

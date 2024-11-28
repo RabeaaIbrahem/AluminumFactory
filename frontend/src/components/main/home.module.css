@@ -1,0 +1,102 @@
+/* Body styling */
+body {
+  background: linear-gradient(to bottom, #0485b4, #b2b2b2) no-repeat center
+    center fixed; /* Background gradient */
+  padding: 0; /* Remove default padding */
+}
+
+/* Main container for the Home component */
+.home {
+  text-align: center; /* Center-align text */
+  display: block; /* Display as a block element */
+  width: 70%; /* Set width to 70% of parent */
+  height: auto; /* Height adjusts to content */
+  border-radius: 20px; /* Rounded corners */
+  margin-right: auto; /* Center element horizontally */
+  margin-top: 2rem; /* Margin at the top */
+  margin-left: auto; /* Center element horizontally */
+  margin-bottom: 2rem; /* Margin at the bottom */
+  background: transparent; /* Transparent background */
+  backdrop-filter: blur(8px); /* Blur effect on the background */
+}
+
+/* Styling for the factory image */
+.factory-image {
+  width: 100%; /* Full width */
+  max-width: 600px; /* Maximum width */
+  height: auto; /* Height adjusts to content */
+  margin: 20px 0; /* Vertical margin */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Box shadow for depth */
+}
+
+/* Section styling inside the home component */
+.home section {
+  margin: 20px 0; /* Vertical margin */
+  color: black; /* Text color */
+}
+
+/* Styling for the h2 elements inside the home component */
+.home h2 {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6); /* Text shadow for depth */
+  font-size: 2rem; /* Font size */
+}
+
+/* Paragraph styling inside the home component */
+.home p {
+  text-align: center; /* Center-align text */
+  max-width: 600px; /* Maximum width */
+  margin: 0 auto; /* Center element horizontally */
+  font-size: 1rem; /* Font size */
+  font-weight: bold; /* Bold font weight */
+}
+
+/* Container for goals */
+.goals {
+  display: flex; /* Flexbox layout */
+  flex-wrap: wrap; /* Wrap flex items */
+  justify-content: center; /* Center-align flex items */
+  gap: 20px; /* Space between flex items */
+}
+
+/* Individual goal card styling */
+.goal {
+  background: rgba(181, 202, 209, 0.8); /* Semi-transparent background */
+  border: 1px solid #ddd; /* Border */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Padding inside the element */
+  width: 100%; /* Full width */
+  max-width: 300px; /* Maximum width */
+  position: relative; /* Relative positioning */
+  overflow: hidden; /* Hide overflow */
+  transition: transform 0.3s, background-color 0.3s; /* Transition effects */
+  color: black; /* Text color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Box shadow for depth */
+}
+
+/* Hover effect for goal cards */
+.goal:hover {
+  transform: scale(1.05); /* Slightly enlarge the card */
+  background-color: #024d68; /* Change background color */
+  opacity: 0.2; /* Change opacity */
+}
+
+/* Paragraph styling inside goal cards */
+.goal p {
+  font-size: 1rem; /* Font size */
+  margin: 0; /* Remove default margin */
+  color: w; /* Incorrect color value, should be corrected to white or a valid color */
+}
+
+/* Strong tag styling inside goal cards */
+.goal strong {
+  font-size: 1.2rem; /* Larger font size */
+  font-weight: bold; /* Bold font weight */
+}
+
+/* Main content styling */
+.main-content {
+  margin-right: 220px; /* Right margin */
+  margin-left: 0; /* Left margin */
+  padding: 20px; /* Padding inside the element */
+}

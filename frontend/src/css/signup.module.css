@@ -1,0 +1,113 @@
+/* Container styles for centering the content using flexbox */
+.con {
+  display: flex; /* Use flexbox layout */
+  justify-content: center; /* Center-align items horizontally */
+  align-items: center; /* Center-align items vertically */
+}
+
+/* Styles for the box element */
+.box {
+  background-color: #fff; /* White background color */
+  padding: 30px; /* Padding of 30px inside the box */
+  width: 40%; /* Width of the box set to 40% of its parent */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  border-radius: 10px; /* Rounded corners with 10px radius */
+  border: 2px solid white; /* White border of 2px thickness */
+  background: transparent; /* Transparent background */
+  backdrop-filter: blur(8px); /* Blur effect for background content */
+  text-align: right; /* Align text to the right */
+}
+
+/* Styles for labels with strong emphasis */
+.label strong {
+  font-weight: bold; /* Make the font bold */
+  font-size: 1.5rem; /* Font size of 1.5rem */
+}
+
+/* Title styling */
+.title {
+  text-align: center; /* Center-align the text */
+  margin-bottom: 30px; /* Margin of 30px at the bottom */
+  color: rgb(9, 5, 1); /* Dark color for text */
+}
+
+/* Styles for input fields */
+.form {
+  width: 100%; /* Full width of the container */
+  height: 40px; /* Height of the input field */
+  margin-bottom: 20px; /* Margin of 20px at the bottom */
+  padding: 10px; /* Padding of 10px inside the input field */
+  border: 1px solid #ccc; /* Light gray border */
+  font-size: 16px; /* Font size of 16px */
+}
+
+/* Styles for focused input fields */
+.form:focus {
+  outline: none; /* Remove the default outline */
+  box-shadow: 0px 0px 2px 1px #96b8dc; /* Light blue shadow on focus */
+}
+
+/* Styles for labels */
+.label {
+  display: block; /* Display the label as a block element */
+  margin-bottom: 5px; /* Margin of 5px at the bottom */
+  font-weight: bold; /* Bold font weight */
+  font-family: cursive; /* Cursive font family */
+  color: rgb(9, 5, 1); /* Dark color for text */
+  width: 100%; /* Full width of the container */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Styles for buttons */
+.form {
+  width: 100%; /* Full width of the container */
+  height: 40px; /* Height of the button */
+  background-color: #042e5e; /* Dark blue background color */
+  color: #fff; /* White text color */
+  border: none; /* Remove border */
+  border-radius: 10px; /* Rounded corners with 10px radius */
+  font-size: 16px; /* Font size of 16px */
+  cursor: pointer; /* Pointer cursor on hover */
+  text-decoration: none; /* Remove text decoration */
+  align-content: center; /* Center-align content */
+  align-items: center; /* Center-align items */
+  display: inline-block; /* Inline block display for buttons */
+  margin-top: 10px; /* Margin of 10px at the top */
+  text-align: center; /* Center-align the text */
+}
+
+/* Button hover state */
+.form:hover {
+  background-color: rgb(244, 184, 128); /* Light orange background color on hover */
+}
+
+/* Error message styling */
+.error {
+  display: block; /* Display error message as a block element */
+  margin-top: 5px; /* Margin of 5px at the top */
+  font-size: 14px; /* Font size of 14px */
+  color: #5f0710; /* Dark red color for error text */
+  font-weight: bolder; /* Bolder font weight */
+}
+
+/* Control element styling */
+.control {
+  border-radius: 10px; /* Rounded corners with 10px radius */
+  text-align: right; /* Right-align text */
+  width: 100%; /* Full width of the container */
+  max-width: 600px; /* Maximum width of 500px */
+  padding: 9px; /* Padding of 9px */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Styling for regular text with monospace font */
+.rg {
+  font-family: monospace; /* Monospace font family */
+  color: black; /* Black text color */
+  font-weight: bolder; /* Bolder font weight */
+}
+
+/* Margin bottom for elements */
+.mb {
+  margin-bottom: 10px; /* Margin of 10px at the bottom */
+}

@@ -1,0 +1,328 @@
+.invoiceContainer {
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 800px;
+  direction: rtl; /*setting direction from right to left*/
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  background-color: #fff; /*setting background color to white*/
+  margin-right: 25%; /*adding margin right*/
+}
+
+.invoiceHeader,
+.invoiceSection,
+.invoiceDetails,
+.invoiceTable,
+.invoiceNotes,
+.invoiceFooter {
+  margin-bottom: 20px;
+}
+
+.invoiceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /*aligning items center*/
+}
+
+.headerTitle {
+  text-align: left;
+}
+
+.headerTitle h2 {
+  margin: 0; /*setting margin to zero*/
+}
+
+.headerTitle p {
+  margin: 0;
+  font-size: 12px; /*setting font size to 12px*/
+}
+
+.headerButtons button {
+  margin-right: 10px;
+}
+
+.invoiceSection {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sectionLeft,
+.sectionRight {
+  width: 48%; /*setting width to 48%*/
+}
+
+.invoiceDetails ul {
+  list-style: none;
+  padding: 0;
+}
+
+.invoiceDetails li {
+  margin-bottom: 5px;
+}
+
+.fontBold {
+  font-weight: bold;
+}
+
+.invoiceTable {
+  border: 1px solid #ddd;
+  padding: 10px; /*setting padding to 10px*/
+}
+
+.invoiceNotes {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+.invoiceFooter {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  text-align: center;
+}
+
+.invoiceFooter p {
+  margin: 5px 0;
+}
+
+.invoiceFooter a {
+  color: #000; /*setting color to black*/
+  text-decoration: none;
+}
+
+.formContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /*justifying the content */
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  margin-bottom: 5px;
+  font-weight: bold; /*setting font weight to bold*/
+}
+
+.formGroup input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px; /*setting radius to 4px*/
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;/*setting radius to 4px*/
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.button:hover {
+  background-color: #45a049;
+}
+
+.invoicePreview {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 4px;
+}
+
+.buttonContainer {
+  margin-top: 20px;
+}
+
+.buttonContainer button {
+  margin-right: 10px;
+}
+/* responsive css */
+@media (max-width: 768px) {
+  .sectionLeft,
+  .sectionRight {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .headerTitle {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .headerButtons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .headerButtons button {
+    margin-bottom: 10px;
+  }
+
+  .formGroup {
+    width: 100%;
+  }
+
+  .buttonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .buttonContainer button {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .invoiceContainer {
+    padding: 10px;
+  }
+
+  .invoiceHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .headerButtons {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+
+  .invoiceSection {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .invoiceDetails li {
+    margin-bottom: 10px;
+  }
+
+  .formGroup input {
+    padding: 8px;
+  }
+
+  button {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+}
+
+.formGroup.notesGroup {
+  width: 100%;
+}
+/* error messages */
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.errorMessage {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+.tableContainer {
+  text-align: "right";
+  margin: "20px 0";
+  overflow-x: "auto";
+}
+.tableContainer {
+  text-align: right;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.th,
+.td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: right;
+}
+
+.th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .th,
+  .td {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .td {
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+  }
+
+  .td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding: 12px;
+    font-weight: bold;
+    text-align: left;
+    background-color: #f4f4f4;
+  }
+}
+
+@media (max-width: 480px) {
+  .table {
+    font-size: 14px;
+  }
+
+  .th,
+  .td {
+    padding: 10px;
+  }
+}
+.td {
+  position: relative;
+  overflow: hidden;
+  /* Ensure that content does not overflow */
+}
+
+.sketchContainer {
+  max-width: 100%;
+  max-height: 150px;
+  /* Adjust height as needed */
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sketchDisplay {
+  max-width: 100%;
+  max-height: 100%;
+}
