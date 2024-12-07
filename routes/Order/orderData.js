@@ -212,35 +212,28 @@ const createOrder = async ({ date, supplierId, idQuotation, status }) => {
     throw new Error('Error saving order to database: ' + err.message);
   }
 };
-
-
-
 // Function to get an order by orderNumber
 const getOrderById = async (orderNumber) => {
   const query = "SELECT * FROM `order` WHERE `idOrder` = ?"; // SQL query to select an order by orderNumber
   const [rows] = await db.query(query, [idOrder]); // Execute the query and get the result
   return rows[0]; // Return the first result (order) or undefined if not found
 };
-
 // Function to delete an order by orderNumber
 const deleteOrder = (idOrder) => {
   const sql = "DELETE FROM `order` WHERE `idOrder` = ?"; // SQL query to delete an order by orderNumber
   return queryPromise(sql, [idOrder]); // Return a promise that resolves when the order is deleted
 };
-
 // Function to update an order's status by orderNumber
 // Helper function to handle SQL queries with callbacks
 const queryCallback = (sql, params = [], callback) => {
   db.query(sql, params, callback);
 };
-
 const updateOrder = async (idOrder, supplierId, formattedDate, quotationId) => {
   const query = `
     UPDATE \`order\` 
     SET supplierId = ?, date = ?, idQuotation = ? 
     WHERE idOrder = ?
   `;
-
   try {
     db.query(query, [supplierId, formattedDate, quotationId, idOrder], (err, result) => {
       if (err) {
@@ -262,9 +255,6 @@ const updateOrder = async (idOrder, supplierId, formattedDate, quotationId) => {
     throw error;
   }
 };
-
-
-
 // Function to fetch supplier orders count
 const getSupplierOrdersCount = () => {
   const supplierOrdersQuery = `
@@ -371,10 +361,6 @@ const getOrderByQuotation = async (quotationId) => {
     throw error;
   }
 };
-
-
-
-
 module.exports = {
   getAllOrders,
   createOrder,

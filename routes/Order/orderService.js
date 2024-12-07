@@ -58,10 +58,6 @@ router.post("/createOrder", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
-
-
-
 // Route to get order by orderNumber
 router.get("/order/:orderNumber", async (req, res) => {
   const { idOrder } = req.params; // Extract orderNumber from the route parameters
@@ -86,6 +82,7 @@ router.delete("/order/:idOrder", async (req, res) => {
     res.status(500).json({ error: "Internal server error" }); // Send a 500 error response if something goes wrong
   }
 });
+
 router.get("/orderByQuotation/:quotationId", async (req, res) => {
   const { quotationId } = req.params;
   console.log("Fetching order for quotationId:", quotationId); // הדפסת הפרמטר לקבלת מידע נוסף
@@ -103,14 +100,11 @@ router.get("/orderByQuotation/:quotationId", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
-
-
 // Route to update an order by orderNumber
 router.put("/order/:idOrder", async (req, res) => {
   const { idOrder } = req.params;
   const { supplierId, formattedDate, quotationId } = req.body;
-
+  console.log(formattedDate)
   try {
     const updatedOrder = await orderData.updateOrder(
       idOrder,
@@ -124,8 +118,6 @@ router.put("/order/:idOrder", async (req, res) => {
     res.status(500).json({ error: "Failed to update order" });
   }
 });
-
-
 // Route to fetch supplier orders count
 router.get("/suppliers/orders", async (req, res) => {
   try {

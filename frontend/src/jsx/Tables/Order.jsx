@@ -14,47 +14,43 @@ const Order = () => {
   const [errors, setErrors] = useState({});
   const [editingIndex, setEditingIndex] = useState(null);
   const [formData, setFormData] = useState({
-    orderNumber: "",
-    productId: "",
-    profileType: "",
+    date: "",
+    idOrder: "",
     supplierId: "",
-    customersId: "",
-    status: 1, // default to active
+    idQuotation: "",
+    status: 1, // Initialize status
   });
-
   const [currentPage, setCurrentPage] = useState(1);
-  const [displayActiveOnly, setDisplayActiveOnly] = useState(1);
-  const [message, setMessage] = useState({});
+  const [displayActiveOnly, setDisplayActiveOnly] = useState(1); // Initialize to show active orders
+  const [message, setMessage] = useState({}); // Added for activation messages
   const rowsPerPage = 6;
+
   useEffect(() => {
-    const fetchOrders = async () => {
+    const fetchAllOrders = async () => {
       try {
-        const response = await axios.get("/order");
-        console.log("Fetched Orders:", response.data); // Log fetched data
-        setOrders(response.data);
-      } catch (error) {
-        console.error("Error fetching orders:", error);
+        const res = await axios.get("/order");
+        setOrders(res.data);
+      } catch (err) {
+        console.log(err);
       }
     };
-    fetchOrders();
+    fetchAllOrders();
   }, []);
 
   const handleEdit = (index, data) => {
-    setEditingIndex(index); // Set the current row as editable
-    setFormData({ ...data }); // Populate formData with the row's data
+    setEditingIndex(index);
+    setFormData({ ...data });
   };
 
   const handleCancel = () => {
     setEditingIndex(null);
     setFormData({
-      orderNumber: "",
-      productId: "",
-      profileType: "",
+      date: "",
+      idOrder: "",
       supplierId: "",
-      customersId: "",
-      count: "",
-      status: 1,
-    });
+      idQuotation: "",
+      status: 0,
+    }); // Reset status to 0 on cancel
     setErrors({});
   };
 
@@ -66,54 +62,52 @@ const Order = () => {
         return;
       }
 
-      if (editingIndex !== null && editingIndex < orders.length) {
-        // Update existing order
-        await axios.put(`/order/${formData.orderNumber}`, formData);
+      let updatedOrder;
+      if (formData.idOrder && editingIndex !== orders.length) {
+        await axios.put(`/order/${formData.idOrder}`, formData);
         const updatedOrders = [...orders];
         updatedOrders[editingIndex] = formData;
         setOrders(updatedOrders);
+        updatedOrder = formData;
       } else {
-        // Add new order
-        const res = await axios.post("/createOrder", formData);
-        setOrders([...orders, res.data]); // Add the new order to the state
+        const res = await axios.post("/order", formData);
+        setOrders([...orders, res.data]);
+        updatedOrder = res.data;
+        window.location.reload();
       }
 
-      handleCancel(); // Reset form and editing index after save
-      setMessage({ msgClass: "success", text: "Order saved successfully!" });
-      setTimeout(() => setMessage({}), 2000);
+      handleCancel();
     } catch (err) {
       console.error("Error saving order:", err);
-      setMessage({ msgClass: "error", text: "Failed to save order." });
     }
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleActivateOrder = async (order) => {
+  const handleActivateTable = async (table) => {
     try {
-      const newStatus = order.status === 1 ? 0 : 1;
-      const res = await axios.put(`/order/${order.orderNumber}`, {
-        ...order,
+      const newStatus = table.status === 1 ? 0 : 1; // Toggle status between 0 and 1
+      const res = await axios.put(`/order/${table.idOrder}`, {
+        ...table,
         status: newStatus,
       });
       if (res.status === 200) {
-        const updatedOrders = orders.map((item) =>
-          item.orderNumber === order.orderNumber
-            ? { ...item, status: newStatus }
-            : item
+        const updatedData = orders.map((item) =>
+          item.idOrder === table.idOrder ? { ...item, status: newStatus } : item
         );
-        setOrders(updatedOrders);
+        setOrders(updatedData);
         setMessage({
           msgClass: "success",
-          text: newStatus === 1 ? "Order activated!" : "Order deactivated!",
+          text:
+            newStatus === 1
+              ? "Order activated successfully!"
+              : "Order deactivated successfully!",
         });
-        setTimeout(() => setMessage({}), 2000);
+        setTimeout(() => {
+          setMessage({});
+        }, 2000);
       } else {
         setMessage({
           msgClass: "error",
@@ -122,21 +116,26 @@ const Order = () => {
       }
     } catch (error) {
       console.error("Error updating order status:", error);
-      setMessage({ msgClass: "error", text: "Failed to update order status" });
+      setMessage({
+        msgClass: "error",
+        text: "Failed to update order status",
+      });
     }
   };
 
   const handleChangeDisplay = (event) => {
     const option = event.target.value;
-    setDisplayActiveOnly(
-      option === "active" ? 1 : option === "inactive" ? 0 : null
-    );
+    if (option === "active") {
+      setDisplayActiveOnly(1);
+    } else if (option === "inactive") {
+      setDisplayActiveOnly(0);
+    } else {
+      setDisplayActiveOnly(null);
+    }
   };
 
   const filteredOrders = orders
-    .filter((order) => {
-      return order.orderNumber && order.orderNumber.toString().includes(search);
-    })
+    .filter((data) => data.idOrder.toString().includes(search))
     .filter((order) => {
       if (displayActiveOnly === null) return true;
       return displayActiveOnly ? order.status === 1 : order.status === 0;
@@ -149,28 +148,34 @@ const Order = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleAddOrder = () => {
-    setEditingIndex(orders.length); // Set the editing index to a new row
+    setEditingIndex(orders.length);
     setFormData({
-      orderNumber: "", // Initialize with empty or default values
-      count: "",
-      status: 1, // Default status as active
+      date: "",
+      idOrder: "",
+      supplierId: "",
+      idQuotation: "",
+      status: 1,
     });
   };
 
   return (
     <div className={classes.container}>
       <div className={classes.tablef}>
-        <h2 className="w-100 d-flex justify-content-center p-3">הזמנות</h2>
+        <h2 className="w-100 d-flex justify-content-center p-3">הזמנה</h2>
         <div className={classes.controls}>
           <button className="btn btn-primary" onClick={handleAddOrder}>
             <img src={addIcon} alt="Add" className={classes.icon} /> הוספת הזמנה
           </button>
           <select onChange={handleChangeDisplay} className="form-select">
-            <option value="active">פעיל</option>
-            <option value="inactive">לא פעיל</option>
+            <option value="active">פעילה</option>
+            <option value="inactive">לא פעילה</option>
             <option value="">הכל</option>
           </select>
-          <SearchBar searchVal={search} setSearchVal={setSearch} />
+          <SearchBar
+            searchVal={search}
+            setSearchVal={setSearch}
+            className="search-bar"
+          />
         </div>
         {message.text && (
           <div
@@ -186,13 +191,15 @@ const Order = () => {
             <tr>
               <th>פעולות</th>
               <th>סטטוס</th>
-              <th>כמות</th>
+              <th>מק"ט הצעת מחיר</th>
+              <th>מזהה ספק</th>
               <th>מספר הזמנה</th>
+              <th>תאריך</th>
             </tr>
           </thead>
           <tbody>
             {currentRows.map((data, i) => (
-              <tr key={`${data.orderNumber}-${i}`}>
+              <tr key={data.idOrder}>
                 <td>
                   {editingIndex === i ? (
                     <>
@@ -217,55 +224,102 @@ const Order = () => {
                         className={classes.icon}
                         onClick={() => handleEdit(i, data)}
                       />
-                      {data.status === 1 ? (
-                        <button
-                          className="btn btn-link p-0"
-                          onClick={() => handleActivateOrder(data)}
-                        >
-                          שנה סטטוס
-                        </button>
-                      ) : (
-                        <button
-                          className="btn btn-link p-0"
-                          onClick={() => handleActivateOrder(data)}
-                        >
-                          שנה סטטוס
-                        </button>
-                      )}
+                      <button
+                        className="btn btn-link p-0"
+                        onClick={() => handleActivateTable(data)}
+                      >
+                        {data.status === 1 ? "שנה סטטוס" : "שנה סטטוס"}
+                      </button>
                     </div>
-                  )}
-                </td>
-                <td>{data.status === 1 ? "פעיל" : "לא פעיל"}</td>
-                <td>
-                  {editingIndex === i ? (
-                    <input
-                      type="number"
-                      name="count"
-                      value={formData.count || ""}
-                      onChange={handleChange}
-                      className="form-control"
-                    />
-                  ) : (
-                    data.count
                   )}
                 </td>
                 <td>
                   {editingIndex === i ? (
                     <input
                       type="text"
-                      name="orderNumber"
-                      value={formData.orderNumber || ""}
+                      name="status"
+                      id="status"
+                      value={formData.status}
+                      onChange={handleChange}
+                      placeholder="סטטוס"
+                      className="form-control"
+                      disabled
+                    />
+                  ) : data.status === 1 ? (
+                    "פעיל"
+                  ) : (
+                    "לא פעיל"
+                  )}
+                </td>
+                <td>
+                  {editingIndex === i ? (
+                    <>
+                      <input
+                        type="text"
+                        name="idQuotation"
+                        id="idQuotation"
+                        value={formData.idQuotation}
+                        onChange={handleChange}
+                        placeholder="מספר הצעת מחיר"
+                        className="form-control"
+                      />
+                      {errors.idQuotation && (
+                        <div className="text-danger">{errors.idQuotation}</div>
+                      )}
+                    </>
+                  ) : (
+                    data.idQuotation
+                  )}
+                </td>
+                <td>
+                  {editingIndex === i ? (
+                    <input
+                      type="text"
+                      name="supplierId"
+                      id="supplierId"
+                      value={formData.supplierId}
+                      onChange={handleChange}
+                      placeholder="מזהה ספק"
+                      className="form-control"
+                    />
+                  ) : (
+                    data.supplierId
+                  )}
+                </td>
+                <td>
+                  {editingIndex === i ? (
+                    <input
+                      type="text"
+                      name="idOrder"
+                      id="idOrder"
+                      value={formData.idOrder}
+                      onChange={handleChange}
+                      placeholder="מספר הזמנה"
+                      className="form-control"
+                      disabled={formData.idOrder !== ""}
+                    />
+                  ) : (
+                    data.idOrder
+                  )}
+                </td>
+                <td>
+                  {editingIndex === i ? (
+                    <input
+                      type="date"
+                      name="date"
+                      id="date"
+                      value={formData.date}
                       onChange={handleChange}
                       className="form-control"
                     />
                   ) : (
-                    data.orderNumber
+                    data.date
                   )}
                 </td>
               </tr>
             ))}
             {editingIndex === orders.length && (
-              <tr key={`new-order-${orders.length}`}>
+              <tr>
                 <td>
                   <img
                     src={saveIcon}
@@ -280,29 +334,45 @@ const Order = () => {
                     onClick={handleCancel}
                   />
                 </td>
+                <td></td>
                 <td>
                   <input
-                    type="number"
-                    name="status"
-                    value={formData.status || ""}
+                    type="text"
+                    name="idQuotation"
+                    value={formData.idQuotation}
                     onChange={handleChange}
+                    placeholder="מספר הצעת מחיר"
                     className="form-control"
                   />
+                  {errors.idQuotation && (
+                    <div className="text-danger">{errors.idQuotation}</div>
+                  )}
                 </td>
                 <td>
                   <input
-                    type="number"
-                    name="quantity"
-                    value={formData.quantity || ""}
+                    type="text"
+                    name="supplierId"
+                    value={formData.supplierId}
                     onChange={handleChange}
+                    placeholder="מזהה ספק"
                     className="form-control"
                   />
                 </td>
                 <td>
                   <input
                     type="text"
-                    name="orderNumber"
-                    value={formData.orderNumber || ""}
+                    name="idOrder"
+                    value={formData.idOrder}
+                    onChange={handleChange}
+                    placeholder="מספר הזמנה"
+                    className="form-control"
+                  />
+                </td>
+                <td>
+                  <input
+                    type="date"
+                    name="date"
+                    value={formData.date}
                     onChange={handleChange}
                     className="form-control"
                   />
@@ -312,15 +382,14 @@ const Order = () => {
           </tbody>
         </table>
         <div className="pagination justify-content-center">
-          {Array.from(
-            { length: Math.ceil(filteredOrders.length / rowsPerPage) },
-            (_, index) => (
+          {[...Array(Math.ceil(filteredOrders.length / rowsPerPage)).keys()].map(
+            (number) => (
               <button
-                key={`page-${index}`} // Ensure each button has a unique key
-                className={index + 1 === currentPage ? classes.active : ""}
-                onClick={() => paginate(index + 1)}
+                key={number + 1}
+                onClick={() => paginate(number + 1)}
+                className="page-link"
               >
-                {index + 1}
+                {number + 1}
               </button>
             )
           )}
