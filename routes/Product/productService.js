@@ -60,12 +60,10 @@ router.post("/createProduct", async (req, res) => {
     res.status(200).json({ message: "Product added successfully", productId }); // Send success response with product ID
   } catch (error) {
     console.error("Failed to save product to database:", error); // Log any error
-    res
-      .status(500)
-      .json({
-        error: "Failed to save product to database",
-        details: error.message,
-      }); // Send error response
+    res.status(500).json({
+      error: "Failed to save product to database",
+      details: error.message,
+    }); // Send error response
   }
 });
 
@@ -170,12 +168,10 @@ router.get("/associations", async (req, res) => {
     res.json(data); // Send the profile associations as JSON response
   } catch (err) {
     console.error("Failed to fetch profile associations:", err.message); // Log any error
-    res
-      .status(500)
-      .json({
-        error: "Failed to fetch profile associations",
-        details: err.message,
-      }); // Send error response
+    res.status(500).json({
+      error: "Failed to fetch profile associations",
+      details: err.message,
+    }); // Send error response
   }
 });
 

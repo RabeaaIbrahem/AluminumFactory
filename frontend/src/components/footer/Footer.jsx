@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className={classes.footer}>
       <section className={classes.footer}>
         {/* Display the current year and the name passed as a prop */}
-        &copy; {new Date().getFullYear()} {"הר-אל"}
+        &copy; {2024} {"הר-אל"}
       </section>
     </footer>
   );

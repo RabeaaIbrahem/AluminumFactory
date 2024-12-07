@@ -1,4 +1,3 @@
-
 const express = require("express");
 const factoryData = require("./factoryData"); // Import the factory data
 const router = express.Router(); // Create a new router instance
@@ -16,18 +15,18 @@ router.get("/factory", async (req, res) => {
 
 router.get("/getVAT", async (req, res) => {
   try {
-    const vatData = await factoryData.getVATvalue(); 
+    const vatData = await factoryData.getVATvalue();
 
     // בדוק אם יש תוצאה
     if (vatData.length > 0) {
       // החזר את ה-VAT מהשורה הראשונה
-      res.json({ vat: vatData[0].vat }); 
+      res.json({ vat: vatData[0].vat });
     } else {
       res.json({ vat: 0 }); // החזר 0 אם לא נמצא VAT
     }
   } catch (err) {
-    console.error(err); 
-    res.status(500).json({ error: 'An error occurred while fetching VAT' }); 
+    console.error(err);
+    res.status(500).json({ error: "An error occurred while fetching VAT" });
   }
 });
 

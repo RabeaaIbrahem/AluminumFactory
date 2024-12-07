@@ -25,7 +25,6 @@ export const drawSlidingWindow = (
   ctx.lineTo(x + w / 2, y + h - 10);
   ctx.stroke();
 };
-
 // Draws a multi-pane window with a top and bottom row of panes and vertical dividers
 export const drawMultiPaneWindow = (
   ctx,

@@ -68,7 +68,7 @@
   padding: 5px 20px; /* Padding of 5px top/bottom and 20px left/right */
   font-size: 18px; /* Font size of 18px */
   background-color: white; /* Green background color */
-  border: 1px solid white ; /* Green border */
+  border: 1px solid white; /* Green border */
   color: black; /* White text color */
 }
 
@@ -88,7 +88,15 @@
 .controls > .search-bar {
   width: 250px; /* Width of 250px */
 }
-
+/* Apply this class to ensure all input fields have the same width */
+.dateInput {
+  width: 80%; /* Make it fill the available space */
+  max-width: 150px; /* Optionally, set a max width to control the size */
+  padding: 8px; /* Adjust padding for consistent spacing */
+  border: 1px solid #ccc; /* Add border for consistency */
+  border-radius: 4px; /* Add border radius to make it look neat */
+  font-size: 1rem; /* Adjust font size if needed */
+}
 /* Responsive Styles */
 
 /* For tablets and larger mobile devices */
@@ -144,5 +152,109 @@
   .controls > select,
   .controls > .search-bar {
     width: 100%; /* Full width for select and search bar */
+  }
+}
+.controls {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  /* Adjust spacing as needed */
+}
+
+.dateInput {
+  min-width: 120px;
+  /* Ensure date inputs have a consistent width */
+}
+
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  /* Space between text and icon */
+}
+
+.search-bar {
+  flex: 1;
+  /* Optional: allow the search bar to take up remaining space */
+}
+/* .controls container */
+.controls {
+  display: flex;
+  /* יישור אלמנטים בשורה אחת */
+  justify-content: space-between;
+  /* רווח אחיד בין האלמנטים */
+  align-items: center;
+  /* יישור אנכי של האלמנטים */
+  gap: 20px;
+  /* רווח בין האלמנטים */
+  flex-wrap: wrap;
+  /* אם אין מספיק מקום, האלמנטים יעברו לשורה הבאה */
+}
+
+/* כלל לכל האלמנטים בתוך .controls */
+.controls>* {
+  min-width: 120px;
+  /* גודל מינימום אחיד לכל אלמנט */
+  max-width: 200px;
+  /* הגבלת רוחב מקסימלי */
+  width: 100%;
+  /* כל אלמנט יתפוס את כל הרוחב הניתן */
+  box-sizing: border-box;
+  /* לכלול padding ובורדר בתוך הרוחב */
+}
+
+/* עיצוב עבור כל label עם אלמנטים */
+.controls label {
+  display: flex;
+  /* שימוש ב-flexbox */
+  align-items: center;
+  /* יישור אנכי של האלמנט והטקסט */
+  gap: 10px;
+  /* רווח בין הטקסט לאלמנט */
+}
+
+/* הגדרת רוחב אחיד לשדות תאריך */
+.dateInput {
+  width: 100%;
+  /* רוחב מלא לשדות תאריך */
+  padding: 8px;
+  /* ריווח אחיד */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* עיצוב עבור חיפוש */
+.search-bar {
+  width: 100%;
+  /* רוחב מלא לשדה החיפוש */
+}
+
+/* ב-Responsive Design */
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    /* אם המסך קטן, המעבר לעיצוב אנכי */
+    align-items: flex-start;
+    /* יישור אל האלמנטים מההתחלה */
+  }
+
+  .controls>* {
+    width: 100%;
+    /* כל האלמנטים יתפסו רוחב מלא */
+    margin-bottom: 10px;
+    /* רווח בין האלמנטים */
+  }
+}
+
+@media (max-width: 480px) {
+  .controls>* {
+    font-size: 14px;
+    /* גודל טקסט קטן יותר */
+    padding: 5px;
+    /* ריווח קטן יותר */
   }
 }

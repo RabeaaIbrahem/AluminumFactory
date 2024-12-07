@@ -59,7 +59,7 @@ const SketchDisplay = ({
           drawCasementWindow(ctx, baseX, baseY, clampedDrawWidth, clampedDrawHeight, profileColor, glassColor, { profileWidth, middleWidth });
         } else if (windowType === "חלון עם תריסים") {
           drawShutteredWindow(ctx, baseX, baseY, clampedDrawWidth, clampedDrawHeight, profileColor, glassColor, { profileWidth, middleWidth });
-        } else if (windowType === "חלון תמונה") {
+        } else if (windowType === "חלון מראה") {
           drawPictureWindow(ctx, baseX, baseY, clampedDrawWidth, clampedDrawHeight, profileColor, glassColor, { profileWidth });
         }
       }

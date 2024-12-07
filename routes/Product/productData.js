@@ -191,20 +191,19 @@ const saveItems = async (items) => {
 };
 
 // Constants for calculations
-const profileDivisionFactor = 6.0;
-
+const profileDivisionFactor = 600;
 // Calculate required profiles and profiles with emergency
 const calculateProfiles = async () => {
   const query = `
     SELECT 
       pr.id AS ProfileId,  
-      CONCAT(CEILING((p.width * 2 + p.height * 2) / ${profileDivisionFactor}), ' יחידות') AS RequiredProfiles,
+      CONCAT(CEILING((p.width * 2 + p.height * 2)*p.quantity / ${profileDivisionFactor}), ' יחידות') AS RequiredProfiles,
       CONCAT(CEILING((p.quantity * 2 + 2)), ' יחידות') AS ProfilesWithEmergency
     FROM 
       products p
     JOIN 
       profile pr ON p.profileType = pr.id
-    GROUP BY pr.id;
+    GROUP BY pr.id ;
   `; // SQL query to calculate required profiles and profiles with emergency
   return new Promise((resolve, reject) => {
     db.query(query, (err, rows) => {
@@ -248,10 +247,8 @@ const getCuttingPlan = async () => {
 // Get profiles with associated windows and doors
 const getProfilesWithAssociations = async () => {
   const query = `
-    SELECT 
+   SELECT 
       p.profileType AS ProfileId,  
-      p.width AS Width,
-      p.height AS Length,
       w.WindowType AS WindowType,
       d.doorType AS DoorType
     FROM 
@@ -259,7 +256,8 @@ const getProfilesWithAssociations = async () => {
     LEFT JOIN 
       window w ON p.idWindow = w.idWindow  
     LEFT JOIN 
-      door d ON p.idDoor = d.idDoor;  
+      door d ON p.idDoor = d.idDoor
+      ORDER BY p.idProduct DESC; 
   `; // SQL query to get profiles with their associated windows and doors
   return new Promise((resolve, reject) => {
     db.query(query, (err, rows) => {
@@ -274,7 +272,14 @@ const getProfilesWithAssociations = async () => {
 
 // Fetch foam data for windows
 const getFoamWindowData = async () => {
-  const query = "SELECT foamId, quantity FROM foam_window"; // SQL query to select foam data for windows
+  const query = `SELECT 
+    fw.foamId, 
+    fw.quantity, 
+    f.foamType 
+  FROM 
+    foam_window fw
+  JOIN 
+    foam f ON f.foamId = fw.foamId;`; // SQL query to select foam data for windows
   return new Promise((resolve, reject) => {
     db.query(query, (err, rows) => {
       if (err) {
@@ -288,7 +293,7 @@ const getFoamWindowData = async () => {
 
 // Fetch foam data for doors
 const getFoamDoorData = async () => {
-  const query = "SELECT foamId, quantity FROM foam_door"; // SQL query to select foam data for doors
+  const query = `SELECT fd.foamId, fd.quantity, f.foamType FROM foam_door fd JOIN foam f ON f.foamId = fd.foamId;`; // SQL query to select foam data for doors
   return new Promise((resolve, reject) => {
     db.query(query, (err, rows) => {
       if (err) {

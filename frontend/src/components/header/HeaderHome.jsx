@@ -12,13 +12,6 @@ function Header() {
     navigate("/login"); // Navigate to login page
     setMenuOpen(false); // Close the menu
   };
-
-  // Function to handle logout button click
-  const handleLogout = () => {
-    navigate("/"); // Navigate to home page
-    setMenuOpen(false); // Close the menu
-  };
-
   // Function to toggle the menu open/closed state
   const toggleMenu = () => {
     setMenuOpen(!menuOpen); // Toggle the state of menuOpen

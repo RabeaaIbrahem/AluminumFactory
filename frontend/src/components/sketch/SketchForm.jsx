@@ -42,7 +42,7 @@ const SketchForm = ({
               setWidthError
             )
           }
-          placeholder="הזן רוחב (50-350)"
+          placeholder="הזן רוחב (100-350)"
         />
         {widthError && <p className="error-message">{widthError}</p>}
       </div>
@@ -61,7 +61,7 @@ const SketchForm = ({
                 setLengthError
               )
             }
-            placeholder="הזן אורך (50-350)"
+            placeholder="הזן אורך (100-350)"
           />
           {lengthError && <p className="error-message">{lengthError}</p>}
         </div>
@@ -99,7 +99,7 @@ const SketchForm = ({
             <option value="חלון עם תריסים">חלון עם תריסים</option>
             <option value="חלון ציר">חלון ציר</option>
             <option value="חלון רב חלונות">חלון רב חלונות</option>
-            <option value="חלון תמונה">חלון תמונה</option>
+            <option value="חלון מראה">חלון מראה</option>
           </select>
         </div>
       )}

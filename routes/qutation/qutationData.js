@@ -9,6 +9,7 @@ const queryPromise = (sql, params = []) =>
     });
   });
 
+// Function to fetch quotation by ID
 const getQuotationById = (idQuotation) => {
   const query = "SELECT * FROM `quotations` WHERE idQuotation = ?";
   return new Promise((resolve, reject) => {
@@ -27,6 +28,21 @@ const getAllQuotations = () => {
   const q = "SELECT * FROM `quotations` ORDER BY idQuotation DESC";
   return queryPromise(q);
 };
+// Function to update the quotation status in the database
+const updateQuotationStatusById = async (idQuotation, status) => {
+  const query = "UPDATE `quotations` SET `status` = ? WHERE `idQuotation` = ?";
+  console.log(status, "gf");
+  try {
+    console.log(
+      `Executing query: ${query} with values [${status}, ${idQuotation}]`
+    );
+    const result = await db.query(query, [status, idQuotation]);
+    return result;
+  } catch (error) {
+    console.error("Database error:", error);
+    throw new Error("Error updating quotation status");
+  }
+};
 
 // Function to check if a customer exists by ID
 const checkCustomerExists = (idCustomer) => {
@@ -36,10 +52,18 @@ const checkCustomerExists = (idCustomer) => {
 
 // Function to create a new quotation
 const createQuotation = (quotationData) => {
-  const { idCustomer, customerName, date, totalPrice, discount, vat, notes } =
-    quotationData;
+  const {
+    idCustomer,
+    customerName,
+    date,
+    totalPrice,
+    discount,
+    vat,
+    notes,
+    status,
+  } = quotationData;
   const q =
-    "INSERT INTO `quotations` (`idCustomer`, `customerName`, `date`, `totalPrice`, `discount`, `vat`, `notes`) VALUES (?, ?, ?, ?, ?,?, ?)";
+    "INSERT INTO `quotations` (`idCustomer`, `customerName`, `date`, `totalPrice`, `discount`, `vat`, `notes`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
   return queryPromise(q, [
     idCustomer,
@@ -49,6 +73,7 @@ const createQuotation = (quotationData) => {
     discount,
     vat,
     notes,
+    status, // Added status field
   ])
     .then((result) => {
       return { idQuotation: result.insertId }; // Return the new quotation ID
@@ -66,11 +91,19 @@ const deleteQuotationById = (idQuotation) => {
 
 // Function to update a quotation by quotation ID
 const updateQuotationById = (idQuotation, quotationData) => {
-  const { idCustomer, customerName, date, totalPrice, discount, vat, notes } =
-    quotationData;
+  const {
+    idCustomer,
+    customerName,
+    date,
+    totalPrice,
+    discount,
+    vat,
+    notes,
+    status,
+  } = quotationData;
 
   const q =
-    "UPDATE `quotations` SET `idCustomer` = ?, `customerName` = ?, `date` = ?, `totalPrice` = ?, `discount` = ?, `vat` = ?, `notes` = ? WHERE `idQuotation` = ?";
+    "UPDATE `quotations` SET `idCustomer` = ?, `customerName` = ?, `date` = ?, `totalPrice` = ?, `discount` = ?, `vat` = ?, `notes` = ?, `status` = ? WHERE `idQuotation` = ?";
 
   return queryPromise(q, [
     idCustomer,
@@ -80,7 +113,8 @@ const updateQuotationById = (idQuotation, quotationData) => {
     discount,
     vat,
     notes,
-    idQuotation, // Moved `idQuotation` to the end to match the query
+    status, // Update status field
+    idQuotation, // Added idQuotation to the end to match query
   ]);
 };
 
@@ -113,11 +147,29 @@ const getQuotationDetailsByDateRange = () => {
 
   return queryPromise(query);
 };
+
+// Function to get quotations by customer ID
 const getQuotationsByCustomerId = async (idCustomer) => {
   console.log(`Querying database for customer ID: ${idCustomer}`); // Debug log
   const q = `SELECT * FROM quotations WHERE idCustomer = ? ORDER BY idQuotation DESC;`;
   const rows = await queryPromise(q, [idCustomer]);
   return rows;
+};
+// Function to get quotations by date range and status
+const getQuotationsByDateRangeAndStatus = (fromDate, toDate, status) => {
+  const query = `
+    SELECT idCustomer, 
+           SUM(totalPrice) as totalPrice, 
+           DATE_FORMAT(date, '%Y-%m') as month, 
+           COUNT(*) as quotationCount,
+           date as fromDate, 
+           DATE_ADD(date, INTERVAL 1 MONTH) as toDate
+    FROM quotations
+    WHERE date BETWEEN ? AND ? AND status = ?
+    GROUP BY idCustomer, month
+    ORDER BY month, idCustomer;
+  `;
+  return queryPromise(query, [fromDate, toDate, status]);
 };
 
 module.exports = {
@@ -131,4 +183,6 @@ module.exports = {
   getQuotationDetailsByDateRange,
   getQuotationById,
   getQuotationsByCustomerId,
+  updateQuotationStatusById,
+  getQuotationsByDateRangeAndStatus,
 };

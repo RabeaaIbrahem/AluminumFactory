@@ -14,24 +14,6 @@ router.get("/order", async (req, res) => {
 });
 
 // Route to create a new order
-// router.post("/createOrder", async (req, res) => {
-//   const { supplierId, formattedDate, quotationId } = req.body;
-//   const status = 1; // default status
-
-//   try {
-//     // כאן לא נשלח את ה-`idOrder` כי הוא יווצר אוטומטית
-//     await orderData.createOrder({
-//       date: formattedDate,
-//       supplierId,
-//       idQuotation: quotationId,
-//       status,
-//     });
-//     res.json("Order added successfully!");
-//   } catch (err) {
-//     console.error("Error creating order:", err);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// });
 router.post("/createOrder", async (req, res) => {
   const { supplierId, formattedDate, quotationId } = req.body;
   const status = 1; // default status
@@ -48,10 +30,10 @@ router.post("/createOrder", async (req, res) => {
     // Assuming newOrder is the result object returned by MySQL
     const orderId = newOrder.insertId; // Get the insertId from the result
 
-    console.log('New Order Created:', orderId); // Log the new order ID
+    console.log("New Order Created:", orderId); // Log the new order ID
     res.json({
       message: "Order added successfully!",
-      idOrder: orderId,  // Return the id of the newly created order
+      idOrder: orderId, // Return the id of the newly created order
     });
   } catch (err) {
     console.error("Error creating order:", err);
@@ -59,7 +41,7 @@ router.post("/createOrder", async (req, res) => {
   }
 });
 // Route to get order by orderNumber
-router.get("/order/:orderNumber", async (req, res) => {
+router.get("/order/:idOrder", async (req, res) => {
   const { idOrder } = req.params; // Extract orderNumber from the route parameters
 
   try {
@@ -82,29 +64,31 @@ router.delete("/order/:idOrder", async (req, res) => {
     res.status(500).json({ error: "Internal server error" }); // Send a 500 error response if something goes wrong
   }
 });
-
-router.get("/orderByQuotation/:quotationId", async (req, res) => {
-  const { quotationId } = req.params;
-  console.log("Fetching order for quotationId:", quotationId); // הדפסת הפרמטר לקבלת מידע נוסף
+// Route to get the order details by the idQuotation
+router.get("/orderByQuotation/:idQuotation", async (req, res) => {
+  const { idQuotation } = req.params;
 
   try {
-    const order = await orderData.getOrderByQuotation(quotationId);
-    console.log("Order fetched:", order); // הדפסת התוצאה כדי לוודא אם היא קיימת
-    if (order) {
-      res.json(order);
-    } else {
-      res.status(404).json({ error: "Order not found" });
+    const order = await orderData.getOrderByQuotation(idQuotation);
+
+    if (!order) {
+      return res
+        .status(200)
+        .json({ message: "No order found for this quotation", order: null });
     }
+
+    res.json(order);
   } catch (error) {
     console.error("Error fetching order:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
 // Route to update an order by orderNumber
 router.put("/order/:idOrder", async (req, res) => {
   const { idOrder } = req.params;
   const { supplierId, formattedDate, quotationId } = req.body;
-  console.log(formattedDate)
+
   try {
     const updatedOrder = await orderData.updateOrder(
       idOrder,
@@ -118,6 +102,7 @@ router.put("/order/:idOrder", async (req, res) => {
     res.status(500).json({ error: "Failed to update order" });
   }
 });
+
 // Route to fetch supplier orders count
 router.get("/suppliers/orders", async (req, res) => {
   try {
@@ -129,11 +114,11 @@ router.get("/suppliers/orders", async (req, res) => {
   }
 });
 // New route for fetching foam window data for a specific customer
-router.get("/foam-window/:customerId", async (req, res) => {
-  const customerId = req.params.customerId; // Get customer ID from route params
+router.get("/foam-window/:idQuotation", async (req, res) => {
+  const idQuotation = req.params.idQuotation; // Get quotation ID from route params
 
   try {
-    const data = await orderData.getFoamWindowData(customerId); // Fetch foam window data for the customer
+    const data = await orderData.getFoamWindowData(idQuotation); // Fetch foam window data for the customer based on the id quotation
     res.json(data); // Send the foam window data as a JSON response
   } catch (error) {
     console.error("Error fetching foam window data:", error); // Log any error
@@ -141,11 +126,11 @@ router.get("/foam-window/:customerId", async (req, res) => {
   }
 });
 // New route for fetching foam door data for a specific customer
-router.get("/foam-door/:customerId", async (req, res) => {
-  const customerId = req.params.customerId; // Get customer ID from route params
+router.get("/foam-door/:idQuotation", async (req, res) => {
+  const idQuotation = req.params.idQuotation; // Get customer ID from route params
 
   try {
-    const data = await orderData.getFoamDoorData(customerId); // Fetch foam door data for the customer
+    const data = await orderData.getFoamDoorData(idQuotation); // Fetch foam door data for the customer based on the id quotation
     res.json(data); // Send the foam door data as a JSON response
   } catch (error) {
     console.error("Error fetching foam door data:", error); // Log any error
@@ -153,11 +138,11 @@ router.get("/foam-door/:customerId", async (req, res) => {
   }
 });
 // New route for calculating required profiles and profiles with emergency for a specific customer
-router.get("/calculate-profiles/:customerId", async (req, res) => {
-  const customerId = req.params.customerId; // Extract customerId from the request parameters
+router.get("/calculate-profiles/:idQuotation", async (req, res) => {
+  const idQuotation = req.params.idQuotation; // Extract customerId from the request parameters
 
   try {
-    const data = await orderData.calculateProfile(customerId); // Call the calculateProfiles function
+    const data = await orderData.calculateProfile(idQuotation); // Call the calculateProfiles function
     res.json(data); // Send the data as a JSON response
   } catch (error) {
     console.error("Error fetching profile calculations:", error); // Log any errors
